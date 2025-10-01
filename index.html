@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickit</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    
+    
+    
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">⚡ Tickit</div>
+            <ul class="nav-links">
+                <li><a href="#" data-section="home" class="active">Home</a></li>
+                <li><a href="#" data-section="tasks">Tasks</a></li>
+                <li><a href="#" data-section="analytics">Analytics</a></li>
+                <li><a href="#" data-section="about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="section active">
+        <div class="container">
+            <div class="hero">
+                <h1 class="section-title">Welcome to Tickit</h1>
+                <p class="section-subtitle">Organize your life with style and efficiency</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card" data-navigate="tasks">
+                    <div class="stat-number" id="home-total-tasks">0</div>
+                    <div class="stat-label">Total Tasks</div>
+                </div>
+                <div class="stat-card" data-navigate="tasks">
+                    <div class="stat-number" id="home-active-tasks">0</div>
+                    <div class="stat-label">Active Tasks</div>
+                </div>
+                <div class="stat-card" data-navigate="tasks">
+                    <div class="stat-number" id="home-completed-tasks">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-card" data-navigate="analytics">
+                    <div class="stat-number" id="home-completion-rate">0%</div>
+                    <div class="stat-label">Completion Rate</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Section -->
+            <div style="margin-top: 4rem;">
+                <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Quick Actions</h2>
+                <div class="feature-grid">
+                    <div class="feature-card" style="cursor: pointer;" onclick="navigateToSection('tasks')">
+                        <div class="feature-icon">➕</div>
+                        <h4 class="feature-title">Create Task</h4>
+                        <p class="feature-description">Add a new task to your list and stay organized</p>
+                    </div>
+                    <div class="feature-card" style="cursor: pointer;" onclick="navigateToSection('tasks')">
+                        <div class="feature-icon">📝</div>
+                        <h4 class="feature-title">View Tasks</h4>
+                        <p class="feature-description">Manage your active and completed tasks</p>
+                    </div>
+                    <div class="feature-card" style="cursor: pointer;" onclick="navigateToSection('analytics')">
+                        <div class="feature-icon">📈</div>
+                        <h4 class="feature-title">Track Progress</h4>
+                        <p class="feature-description">Visualize your productivity with analytics</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity Section -->
+            <div style="margin-top: 4rem;">
+                <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Recent Activity</h2>
+                <div id="recent-tasks" class="tasks-list" style="max-width: 800px; margin: 0 auto;">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎯</div>
+                        <p>No recent activity. Start by creating your first task!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productivity Tips -->
+            <div style="margin-top: 4rem; background: var(--bg-card); padding: 3rem; border-radius: 16px; max-width: 900px; margin-left: auto; margin-right: auto;">
+                <h2 style="font-size: 2rem; margin-bottom: 1.5rem; text-align: center;">Productivity Tips</h2>
+                <div style="display: grid; gap: 1.5rem;">
+                    <div style="display: flex; gap: 1rem; align-items: start;">
+                        <div style="font-size: 2rem; flex-shrink: 0;">💡</div>
+                        <div>
+                            <h4 style="color: var(--accent-primary); margin-bottom: 0.5rem;">Break Down Large Tasks</h4>
+                            <p style="color: var(--text-secondary);">Divide complex projects into smaller, manageable subtasks for better focus and motivation.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; align-items: start;">
+                        <div style="font-size: 2rem; flex-shrink: 0;">⏰</div>
+                        <div>
+                            <h4 style="color: var(--accent-primary); margin-bottom: 0.5rem;">Set Time Blocks</h4>
+                            <p style="color: var(--text-secondary);">Allocate specific time periods for tasks to maintain focus and avoid multitasking.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; align-items: start;">
+                        <div style="font-size: 2rem; flex-shrink: 0;">🎯</div>
+                        <div>
+                            <h4 style="color: var(--accent-primary); margin-bottom: 0.5rem;">Prioritize Daily</h4>
+                            <p style="color: var(--text-secondary);">Start each day by identifying your top 3 most important tasks to accomplish.</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; align-items: start;">
+                        <div style="font-size: 2rem; flex-shrink: 0;">✨</div>
+                        <div>
+                            <h4 style="color: var(--accent-primary); margin-bottom: 0.5rem;">Celebrate Wins</h4>
+                            <p style="color: var(--text-secondary);">Acknowledge completed tasks to maintain motivation and build positive momentum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TASKS SECTION -->
+    <section id="tasks" class="section">
+        <div class="container">
+            <h2 class="section-title">Task Manager</h2>
+            <p class="section-subtitle">Create and manage your tasks efficiently</p>
+            
+            <div class="tasks-container">
+                <!-- Task Input -->
+                <div class="task-input-section">
+                    <h3 style="margin-bottom: 1.5rem;">Add New Task</h3>
+                    <form id="task-form">
+                        <div class="input-group">
+                            <label for="task-title">Task Title *</label>
+                            <input type="text" id="task-title" placeholder="Enter task title" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="task-description">Description (Optional)</label>
+                            <textarea id="task-description" rows="4" placeholder="Enter task description"></textarea>
+                        </div>
+                        <button type="submit" class="btn" id="submit-btn">Add Task</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-edit-btn" style="display: none; margin-top: 1rem;">Cancel Edit</button>
+                    </form>
+
+                    <div class="progress-section">
+                        <h4>Overall Progress</h4>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progress-bar">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasks List -->
+                <div class="tasks-list-section">
+                    <!-- Active Tasks -->
+                    <div class="task-category">
+                        <div class="category-header">
+                            <h3 class="category-title">📋 Active Tasks</h3>
+                            <span class="task-count" id="active-count">0</span>
+                        </div>
+                        <div class="tasks-list" id="active-tasks-list">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📝</div>
+                                <p>No active tasks. Add one to get started!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Completed Tasks -->
+                    <div class="task-category">
+                        <div class="category-header">
+                            <h3 class="category-title">✅ Completed Tasks</h3>
+                            <span class="task-count" id="completed-count">0</span>
+                        </div>
+                        <div class="tasks-list" id="completed-tasks-list">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">🎉</div>
+                                <p>No completed tasks yet. Keep going!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANALYTICS SECTION -->
+    <section id="analytics" class="section">
+        <div class="container">
+            <h2 class="section-title">Analytics Dashboard</h2>
+            <p class="section-subtitle">Track your productivity and progress</p>
+            
+            <div class="analytics-grid">
+                <div class="chart-card">
+                    <h3 class="chart-title">Task Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="donut-chart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Completion Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="bar-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">About Tickit</h2>
+                <p class="section-subtitle">A modern task management solution built with cutting-edge web technologies</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h4 class="feature-title">Fast & Smooth</h4>
+                        <p class="feature-description">Powered by GSAP animations for silky-smooth transitions</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h4 class="feature-title">Visual Analytics</h4>
+                        <p class="feature-description">Track your progress with beautiful Chart.js visualizations</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h4 class="feature-title">Session Storage</h4>
+                        <p class="feature-description">Your tasks persist in memory during your browsing session</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h4 class="feature-title">Modern Design</h4>
+                        <p class="feature-description">Dark theme with neon accents for a premium experience</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h4 class="feature-title">Responsive</h4>
+                        <p class="feature-description">Works seamlessly on desktop, tablet, and mobile devices</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h4 class="feature-title">No Backend</h4>
+                        <p class="feature-description">Everything runs in your browser - no server needed</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; text-align: center; color: var(--text-secondary);">
+                    
+                    <p style="margin-top: 0.5rem;">© 2025 Tickit. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+    
+</body>
+</html>
