@@ -64,6 +64,12 @@ The application uses a fixed navigation bar to switch between the four main sect
 ![alt text](image-1.png)
 ![alt text](image-2.png)
 ![alt text](image-3.png)
+
+
+## Demo
+Deployment Link-https://ramya-rastogi.github.io/Tickit/
+
+
 ## 📄 License
 
 This project is open-source and available under the MIT License.
