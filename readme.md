@@ -60,9 +60,16 @@ The application uses a fixed navigation bar to switch between the four main sect
 | `script.js` | The core JavaScript logic: the `TaskManager` class, DOM manipulation, event listeners, GSAP integrations, and Chart.js initialization/updates. |
 
 ## 🖼️ Screenshots
+HOME PAGE
 ![alt text](image.png)
+
+ADD TASK 
 ![alt text](image-1.png)
+
+ANALYSIS
 ![alt text](image-2.png)
+
+ABOUT
 ![alt text](image-3.png)
 
 
